@@ -1,0 +1,83 @@
+$ cd /d //进入d盘
+
+$ cd d: //进入d盘
+
+$ cd D: //进入d盘
+
+$ cd /D //进入d盘
+
+$ cd ..   //返回上一级目录
+
+$ cd ../  //返回上一级目录
+
+$ cd ../../  //返回上两级目录
+
+$ cd .    //切换到当前目录，通常没有任何反应
+
+$ cd ./   //切换到当前目录，通常没有任何反应
+
+$ cd      //不要以为看错了，确实就只有一个“cd”，它表示切换到个人主目录（类似于切换到window的桌面，但又不是桌面）
+
+$ cd -   //返回上次访问目录（即倒退到上一次目录位置）
+
+$ cd /d/loushengyue/study  //进入d盘中的loushengyue目录下的study目录
+
+$ pwd  //显示当前目录路径
+
+ls 查看目录中的文件 
+ls -F 查看目录中的文件 
+ls -l 显示文件和目录的详细资料 
+ls -a 显示隐藏文件 
+
+
+$ rm test.js -rf  //删除当前目录下的 test.js 文件
+
+$ rm ./test.html -rf //删除当前目录下的 test.html 文件
+
+$ rm ../test.css -rf //删除上一级目录下的 test.css 文件
+
+$ rm test/ -rf //删除当前目录下的 test 文件夹
+
+$ rm tst/tt.js -rf //删除 tst 目录下的 tt.js 文件
+
+$ mv dir new_dir //当前目录下没有 new_dir 时表示将 dir 移动到当前目录下并重命名为 new_dir, 当前目录下有 new_dir 文件夹是表示将 dir 移动到 new_dir 目录中
+
+$ cp test.js newtest.js //复制当前目录下的 test.js 到当前目录下并命名为 newtest.js
+$ cp ../test.html ./ //复制上一级目录下的 test.html 到当前目录下（注意这里是./，没有重命名）
+
+$ touch ./test.js //在当前目录下创建一个名为 test.js 的文件
+
+mkdir www 创建一个叫做 www 的目录 
+
+
+-------------------------------定时任务-------------------------
+
+crontab -e 编辑定时任务
+
+crontab -l 查看定时任务列表
+
+
+cat /var/spool/cron/root 查看root用户下的定时任务
+
+例子 */1 * * * * /dd/shell/test1.sh
+
+删除指定的任务
+
+sed -i '/test1.sh/d' /var/spool/cron/root 
+
+清空空白
+
+sed -i '/^$/d' /var/spool/cron/root
+
+查看定时任务执行情况 tail -f /var/log/cron
+
+
+--------------------------------编辑命令------------------------
+
+esc 键  :q!    不保存退出
+esc 键  :wq    保存退出
+
+
+
+
+

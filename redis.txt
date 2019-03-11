@@ -1,0 +1,108 @@
+--------- redis ------
+
+安装redis
+
+1.检查安装依赖程序
+
+	yum install gcc-c++
+	yum install -y tcl
+
+2.获取安装文件
+
+	wget http://download.redis.io/releases/redis-3.2.9.tar.gz
+	tar xzf redis-3.2.9.tar.gz
+	mv redis-3.2.9 /usr/local/redis
+
+3.进入目录
+
+	cd /usr/local/redis
+
+4.编译安装
+
+	make （如果 make 报错的话 就使用 make MALLOC=libc）
+	make install
+
+5.设置配置文件目录
+
+	mkdir -p /etc/redis
+	cp redis.conf /etc/redis
+
+6.设置后台启动
+
+	vim /etc/redis/redis.conf
+	daemonize yes (no -> yes)
+
+7.使用客户端
+
+	redis-cli
+	set name Joe
+	Ok
+
+8.开机启动配置
+
+	# 开机启动要配置在 rc.local 中，而 /etc/profile 文件，要有用户登录了，才会被执行。
+
+	echo "/usr/local/bin/redis-server /etc/redis/redis.conf &" >> /etc/rc.local
+
+9.设置密码
+
+	redis.conf 文件下 #requirepass foobared去掉注释，foobared改为自己的密码
+
+
+
+
+
+---------------------------  PHP安装redis 扩展 ---------------
+
+1.下载phpredis扩展安装包,以及进入安装目录中。
+
+	wget https://soft.itbulu.com/tools/phpredis-develop.zip
+
+	unzip phpredis-develop.zip
+
+	cd phpredis-develop
+
+2.利用phpize准备添加扩展
+
+	/www/wdlinux/php/bin/phpize  //此处进入安装PHP文件中，根据情况而定
+
+3.配置和安装phpredis
+
+	./configure    --with-php-config=/www/wdlinux/apache_php-5.5.38/bin/php-config //此处PHP文件根据情况而定
+
+4.配置安装
+
+	make
+
+	make install
+
+5.添加扩展文件php.ini
+
+	extension_dir =/www/wdlinux/php/lib/php/extensions/no-debug-non-zts-20121212/redis.so   //将此复制到phpINI文件中，路径随情况而定。
+
+6.重启PHP 。查看PHPinfo 。
+
+
+------------------------redis 常用命令--------------------
+
+
+
+redis  启动redis  redis-server
+
+redis  连接redis  redis-cli    需要密码的话 auth 密码
+
+redis 查看元素命令 lrange 键名  0 -1
+
+PHP连接redis进行操作
+
+$redis = new Redis();
+$redis->connect('127.0.0.1',6379);
+$password = 'wykjredis2018';
+$redis->auth($password);
+$redis->rpush("twoKeyAuth",‘值’)//存进队列
+$redis->lpop('twoKeyAuthResult')//取出队列  （取出队列可以用while (true) 循环取出）
+
+
+
+
+
